@@ -13,6 +13,7 @@ namespace EmployeesManagement
         public decimal actualSalary { get; set; }
         public DateTime DateOfBirth { get; set; }
         public DateTime HireDate { get; set; }
+        
 
         public decimal MonthlySalary
         {
