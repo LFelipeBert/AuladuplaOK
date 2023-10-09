@@ -1,6 +1,5 @@
 ﻿using System;
 
-
 namespace EmployeesManagement
 {
     class Program
@@ -16,7 +15,6 @@ namespace EmployeesManagement
 
             Company company = new Company();
 
-
             while (true)
             {
                 Console.WriteLine("\nMenu do Sistema de Gerenciamento de Empresas:");
@@ -30,41 +28,62 @@ namespace EmployeesManagement
 
                 try
                 {
-
                     int choice = Validators.ValidateChoice(int.TryParse(Console.ReadLine(), out int result) ? result : 0);
 
                     switch (choice)
                     {
                         case 1:
-                            Console.WriteLine("\nDigite o nome do funcionário:");
-                            name = Validators.ValidateName(Console.ReadLine());
-                            Console.WriteLine("\nDigite o último nome do funcionário:");
-                            lastName = Validators.ValidateName(Console.ReadLine());
-                            Console.WriteLine("\nInforme a data de nascimento do funcionário:");
-                            birthDate = Validators.ValidateDateOfBirth(Console.ReadLine());
+                            while (true)
+                            {
+                                try
+                                {
+                                    Console.WriteLine("\nDigite o nome do funcionário:");
+                                    name = Validators.ValidateName(Console.ReadLine());
+                                    Console.WriteLine("\nDigite o último nome do funcionário:");
+                                    lastName = Validators.ValidateName(Console.ReadLine());
+                                    Console.WriteLine("\nInforme a data de nascimento do funcionário:");
+                                    birthDate = Validators.ValidateDateOfBirth(Console.ReadLine());
 
-                            //Trocado o calculo da idade para corresponder a data de nascimento.
-                            age = Validators.ValidateAge(age = DateTime.Now.Year - birthDate.Year);
+                                    // Trocado o calculo da idade para corresponder a data de nascimento.
+                                    age = Validators.ValidateAge(age = DateTime.Now.Year - birthDate.Year);
 
-                            //Adicionada a inserção do Salário em decimal
-                            Console.WriteLine("\nInforme o Salário do funcionário:");
-                            actualSalary = Validators.ValidateSalary(decimal.Parse(Console.ReadLine()));
+                                    // Adicionada a inserção do Salário em decimal
+                                    Console.WriteLine("\nInforme o Salário do funcionário:");
+                                    actualSalary = Validators.ValidateSalary(Console.ReadLine());
 
-                            Employee employee = new Employee(name, lastName, age, birthDate, actualSalary);
-                            company.AddEmployee(employee);
+                                    Employee employee = new Employee(name, lastName, age, birthDate, actualSalary);
+                                    company.AddEmployee(employee);
+                                    break; // Sair do loop interno se não houver exceção
+                                }
+                                catch (Exception e)
+                                {
+                                    Console.WriteLine(e.Message);
+                                }
+                            }
                             break;
 
                         case 2:
-                            Console.WriteLine("\nDigite o nome do funcionário:");
-                            name = Validators.ValidateName(Console.ReadLine());
-                            Console.WriteLine("\nDigite o último nome do funcionário:");
-                            lastName = Validators.ValidateName(Console.ReadLine());
+                            while (true)
+                            {
+                                try
+                                {
+                                    Console.WriteLine("\nDigite o nome do funcionário:");
+                                    name = Validators.ValidateName(Console.ReadLine());
+                                    Console.WriteLine("\nDigite o último nome do funcionário:");
+                                    lastName = Validators.ValidateName(Console.ReadLine());
 
-                            //Removido o ReadLine da porcentagem pois a mesma é fixa em 10%.
-                            percentIncrease = 10;
+                                    // Removido o ReadLine da porcentagem pois a mesma é fixa em 10%.
+                                    percentIncrease = 10;
 
-                            company.PromoteEmployee(name, lastName, (decimal)percentIncrease);
-
+                                    company.PromoteEmployee(name, lastName, (decimal)percentIncrease);
+                  
+                                    break; 
+                                }
+                                catch (Exception e)
+                                {
+                                    Console.WriteLine(e.Message);
+                                }
+                            }
                             break;
 
                         case 3:
@@ -72,23 +91,43 @@ namespace EmployeesManagement
                             break;
 
                         case 4:
-                            Console.WriteLine("\nDigite o nome do funcionário:");
-                            name = Validators.ValidateName(Console.ReadLine());
-                            Console.WriteLine("\nDigite o último nome do funcionário:");
-                            lastName = Validators.ValidateName(Console.ReadLine());
+                            while (true)
+                            {
+                                try
+                                {
+                                    Console.WriteLine("\nDigite o nome do funcionário:");
+                                    name = Validators.ValidateName(Console.ReadLine());
+                                    Console.WriteLine("\nDigite o último nome do funcionário:");
+                                    lastName = Validators.ValidateName(Console.ReadLine());
 
-                            company.RemoveEmployee(name, lastName);
-
-
+                                    company.RemoveEmployee(name, lastName);
+                                    break; 
+                                }
+                                catch (Exception e)
+                                {
+                                    Console.WriteLine(e.Message);
+                                }
+                            }
                             break;
 
                         case 5:
-                            Console.WriteLine("\nDigite o nome do funcionário:");
-                            name = Validators.ValidateName(Console.ReadLine());
-                            Console.WriteLine("\nDigite o último nome do funcionário:");
-                            lastName = Validators.ValidateName(Console.ReadLine());
+                            while (true)
+                            {
+                                try
+                                {
+                                    Console.WriteLine("\nDigite o nome do funcionário:");
+                                    name = Validators.ValidateName(Console.ReadLine());
+                                    Console.WriteLine("\nDigite o último nome do funcionário:");
+                                    lastName = Validators.ValidateName(Console.ReadLine());
 
-                            company.ListAnnualSalary(name, lastName);
+                                    company.ListAnnualSalary(name, lastName);
+                                    break; 
+                                }
+                                catch (Exception e)
+                                {
+                                    Console.WriteLine(e.Message);
+                                }
+                            }
                             break;
 
                         case 6:
@@ -99,19 +138,13 @@ namespace EmployeesManagement
                         default:
                             Console.WriteLine("\nOpção inválida.");
                             break;
-
                     }
-
-
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine(e.Message);
                 }
             }
-
-
-
         }
     }
 }
