@@ -14,7 +14,7 @@ namespace EmployeesManagement
             
             employees.Add(employee);
 
-            Console.WriteLine($"{employee.FirstName} {employee.LastName} foi contratado. na data: {employeeHireDate}");
+            Console.WriteLine($"{employee.FirstName} {employee.LastName} foi contratado. na data: {employeeHireDate} com o salário de: {employee.MonthlySalary}");
         }
 
         public void PromoteEmployee(string firstName, string lastName, decimal percentageIncrease)
@@ -51,7 +51,7 @@ namespace EmployeesManagement
             if (employee != null)
             {
                 employees.Remove(employee);
-                Console.WriteLine($"{employee.FirstName} {employee.LastName} foi demitido.");
+                Console.WriteLine($" Funcionário {employee.FirstName} {employee.LastName} foi removido na data: {DateTime.Now}");
             }
             else
             {
