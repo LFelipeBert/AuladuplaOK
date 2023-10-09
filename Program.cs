@@ -12,6 +12,7 @@ namespace EmployeesManagement
             DateTime birthDate;
             decimal actualSalary;
             double percentIncrease;
+            int employeeId;
 
             Company company = new Company();
 
@@ -51,7 +52,10 @@ namespace EmployeesManagement
                                     Console.WriteLine("\nInforme o Salário do funcionário:");
                                     actualSalary = Validators.ValidateSalary(Console.ReadLine());
 
-                                    Employee employee = new Employee(name, lastName, age, birthDate, actualSalary);
+                                    Console.WriteLine("\nInforme o número de matrícula do funcionário:");
+                                    employeeId = Validators.ValidateEmployeeId(Console.ReadLine());
+
+                                    Employee employee = new Employee(name, lastName, age, birthDate, actualSalary, employeeId);
                                     company.AddEmployee(employee);
                                     break; // Sair do loop interno se não houver exceção
                                 }

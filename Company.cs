@@ -5,7 +5,7 @@ namespace EmployeesManagement
 {
     public class Company
     {
-        private List<Employee> employees = new List<Employee>();
+        public static List<Employee> employees { get; private set; } = new List<Employee>();
         private DateTime employeeHireDate;
 
         public void AddEmployee(Employee employee)
@@ -14,7 +14,7 @@ namespace EmployeesManagement
             
             employees.Add(employee);
 
-            Console.WriteLine($"{employee.FirstName} {employee.LastName} foi contratado. na data: {employeeHireDate} com o salário de: {employee.MonthlySalary}");
+            Console.WriteLine($"{employee.FirstName} {employee.LastName} foi contratado. na data: {employeeHireDate} com o salário de: {employee.MonthlySalary} e número de matrícula: {employee.EmployeeId}");
         }
 
         public void PromoteEmployee(string firstName, string lastName, decimal percentageIncrease)
