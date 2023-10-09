@@ -50,8 +50,10 @@ namespace EmployeesManagement
 
         public static decimal ValidateSalary(string MySalary)
         {
+        
+
             //Inserido validação para ser digitado um numero e por padrão o salário é 0
-            decimal Salary = decimal.TryParse(MySalary, out decimal result) ? result : 0;
+            decimal Salary = decimal.TryParse(MySalary.Trim(), out decimal result) ? result : 0;
             
             //Inserido validação para ser digitado um numero
             if (typeof(decimal) != Salary.GetType())
@@ -73,6 +75,26 @@ namespace EmployeesManagement
                 throw new Exception("a escolha deve ser entre 1 e 6.");
 
             return choice;
+        }
+
+        public static int ValidateEmployeeId(string id)
+        {
+            if (string.IsNullOrEmpty(id) || string.IsNullOrWhiteSpace(id))
+                throw new ArgumentException("A matrícula não pode ser vazia.");
+                
+            int employeeId = int.TryParse(id.Trim(), out int result) ? result : 0;
+
+            foreach (Employee employee in Company.employees)
+            {
+                if (employee.EmployeeId == employeeId)
+                    throw new ArgumentException("Já existe um funcionário com essa matrícula.");
+            }
+            if (employeeId.GetType() != typeof(int))
+                throw new ArgumentException("A matrícula deve ser um número inteiro.");
+            if (employeeId < 0)
+                throw new ArgumentException("A matrícula deve ser um número positivo.");
+
+            return employeeId;
         }
 
         

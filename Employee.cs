@@ -8,7 +8,7 @@ namespace EmployeesManagement
         private decimal _monthlySalary;
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        private int EmployeeId = new Random().Next(1000, 9999);
+        public int EmployeeId { get; set; } 
         public int Age { get; set; }
         public decimal actualSalary { get; set; }
         public DateTime DateOfBirth { get; set; }
@@ -26,13 +26,14 @@ namespace EmployeesManagement
 
         public static decimal MinimumSalary = 1320.00m;
 
-        public Employee(string firstName, string lastName, int age, DateTime dateOfBirth, decimal actualSalary)
+        public Employee(string firstName, string lastName, int age, DateTime dateOfBirth, decimal actualSalary, int employeeId)
         {
             FirstName = firstName;
             LastName = lastName;
             Age = age;
             DateOfBirth = dateOfBirth;
             MonthlySalary = actualSalary;
+            EmployeeId = employeeId;
         }
 
         public decimal CalculateAnnualSalary()
